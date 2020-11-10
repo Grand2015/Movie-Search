@@ -29,14 +29,19 @@ urlpatterns = [
 # http://127.0.0.1:8000/hello
 from django.urls import path
 from MovieSearch import views
+from django.conf.urls import url
 
 '''
 urlpatterns = [
     path('hello/', views.hello, name='home'),
 ]
+urlpatterns = [
+    path('movie/', views.movie_search),
+]
 '''
 
 
 urlpatterns = [
-    path('movie/', views.movie_search),
+
+    url(r'^movie-search$', views.movie_search),
 ]

@@ -5,7 +5,7 @@
 from django.shortcuts import render
 import requests         # 网页请求模块
 from lxml import etree  # 网页请求数据解析模块
-
+from django.http import HttpResponse
 '''
 # 对于 >= Python 3.4：
 import importlib
@@ -38,7 +38,13 @@ def get_movie_info(headers_in, url_in):
 
 
 def movie_search(request):
-    movie_name, movie_point, movie_contact = get_movie_info(headers, url)
     url_str = "<a href='" + url + "'>Click Here</a>"
-    movie_dict = {"movie": movie_name, "mark": movie_point, "comment": movie_contact, "linkage": url_str}
+    movie_dict = {}
+    if request.GET:
+        movie_name, movie_point, movie_contact = get_movie_info(headers, url)
+        movie_dict['movie'] = movie_name
+        movie_dict['mark'] = movie_point
+        movie_dict['comment'] = movie_contact
+        movie_dict['linkage'] = url_str
     return render(request, "movieSearch.html", {"movie_dict": movie_dict})
+

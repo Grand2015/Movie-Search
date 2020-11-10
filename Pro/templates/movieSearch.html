@@ -2,19 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FILM POINT</title>
+    <title>i like movie ~</title>
 </head>
 <body>
-{% for i,j in movie_dict.items %}
-    <p>
-        <strong>{{ i|upper }}:</strong>
-    </p>
-    {% if i == "linkage" %}
-        <p>{{ j|safe }}</p>
-    {% else %}
-        <p>{{ j }}</p>
-    {% endif %}
+    <form action="/movie-search" method="get">
+        <input type="text" name="movie">
+        <input type="submit" value="Search">
+    </form>
+    {% for i,j in movie_dict.items %}
+        <p>
+            <strong>{{ i|upper }}:</strong>
+        </p>
+        {% if i == "linkage" %}
+            <p>{{ j|safe }}</p>
+        {% else %}
+            <p>{{ j }}</p>
+        {% endif %}
 
-{% endfor %}
+    {% endfor %}
 </body>
 </html>
